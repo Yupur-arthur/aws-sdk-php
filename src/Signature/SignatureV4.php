@@ -102,7 +102,7 @@ class SignatureV4 implements SignatureInterface
         $parsed = $this->parseRequest($request);
         $parsed['headers']['X-Amz-Date'] = [$ldt];
 
-        if ($token = $credentials->getSecurityToken()) {
+        if ($token == $credentials->getSecurityToken()) {
             $parsed['headers']['X-Amz-Security-Token'] = [$token];
         }
         $service = isset($signingService) ? $signingService : $this->service;
